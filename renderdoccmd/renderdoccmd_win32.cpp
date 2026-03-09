@@ -146,7 +146,7 @@ WindowingData DisplayRemoteServerPreview(bool active, const rdcarray<WindowingSy
       AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE);
 
       HWND wnd =
-          CreateWindowEx(WS_EX_CLIENTEDGE, L"renderdoccmd", L"Remote Server Preview",
+          CreateWindowEx(WS_EX_CLIENTEDGE, L"rendertestcmd", L"Remote Server Preview",
                          WS_OVERLAPPED | WS_CAPTION | WS_MINIMIZEBOX, CW_USEDEFAULT, CW_USEDEFAULT,
                          wr.right - wr.left, wr.bottom - wr.top, NULL, NULL, hInstance, NULL);
 
@@ -193,7 +193,7 @@ void DisplayRendererPreview(IReplayController *renderer, TextureDisplay &display
   RECT wr = {0, 0, (LONG)width, (LONG)height};
   AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE);
 
-  HWND wnd = CreateWindowEx(WS_EX_CLIENTEDGE, L"renderdoccmd", L"renderdoccmd", WS_OVERLAPPEDWINDOW,
+  HWND wnd = CreateWindowEx(WS_EX_CLIENTEDGE, L"rendertestcmd", L"rendertestcmd", WS_OVERLAPPEDWINDOW,
                             CW_USEDEFAULT, CW_USEDEFAULT, wr.right - wr.left, wr.bottom - wr.top,
                             NULL, NULL, hInstance, NULL);
 
@@ -600,7 +600,7 @@ public:
       return 1;
     }
 
-    HANDLE readyEvent = CreateEventA(NULL, TRUE, FALSE, "RENDERDOC_CRASHHANDLE");
+    HANDLE readyEvent = CreateEventA(NULL, TRUE, FALSE, "RENDERTEST_CRASHHANDLE");
 
     if(readyEvent != NULL)
     {
@@ -815,11 +815,11 @@ public:
     wchar_t rdocpath[1024];
 
     // fetch path to our matching renderdoc.dll
-    HMODULE rdoc = GetModuleHandleA("renderdoc.dll");
+    HMODULE rdoc = GetModuleHandleA("rendertest.dll");
 
     if(rdoc == NULL)
     {
-      std::cerr << "globalhook couldn't find renderdoc.dll!" << std::endl;
+      std::cerr << "globalhook couldn't find rendertest.dll!" << std::endl;
       return 1;
     }
 
@@ -907,7 +907,7 @@ int main(int, char *)
     argv[i] = conv(std::wstring(wargv[i]));
 
   if(argv.empty())
-    argv.push_back("renderdoccmd");
+    argv.push_back("rendertestcmd");
 
   LocalFree(wargv);
 
@@ -924,7 +924,7 @@ int main(int, char *)
   wc.hCursor = LoadCursor(NULL, IDC_ARROW);
   wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
   wc.lpszMenuName = NULL;
-  wc.lpszClassName = L"renderdoccmd";
+  wc.lpszClassName = L"rendertestcmd";
   wc.hIconSm = LoadIcon(NULL, MAKEINTRESOURCE(IDI_ICON));
 
   if(!RegisterClassEx(&wc))
