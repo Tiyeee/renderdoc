@@ -31,7 +31,6 @@
     <RootNamespace>qrenderdoc</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
     <ProjectName>qrenderdoc</ProjectName>
-    <WindowsTargetPlatformVersion>$(RenderDocLatestWin10SDKVersion)</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\util\WindowsSDKTarget.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -42,7 +41,7 @@
     <CharacterSet>NotSet</CharacterSet>
     <ConfigurationType>Application</ConfigurationType>
     <PrimaryOutput>qrenderdoc</PrimaryOutput>
-    <TargetName>qrendertest</TargetName>
+    <TargetName>qrenderdoc</TargetName>
     <IgnoreImportLibrary>true</IgnoreImportLibrary>
     <SolutionRelativeIntDir>$(Platform)\$(Configuration)\obj\$(ProjectName)\</SolutionRelativeIntDir>
   </PropertyGroup>
